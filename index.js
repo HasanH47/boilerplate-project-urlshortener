@@ -22,13 +22,6 @@ app.post("/api/shorturl", function (req, res) {
 
   console.log("Received URL:", url);
 
-  // Validate the URL format
-  const urlRegex = /^(https?):\/\/(\S+\.)?(\S{2,})\.\S{2,}$/;
-  if (!urlRegex.test(url)) {
-    console.error("Invalid URL:", url);
-    return res.json({ error: "Invalid URL" });
-  }
-
   // Generate a short code (you can use a library for this)
   const shortCode = generateShortCode();
 
