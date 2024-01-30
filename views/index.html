@@ -15,60 +15,18 @@
     <h1>URL Shortener Microservice</h1>
     <main>
       <section>
-        <form id="urlForm">
+        <form action="api/shorturl" method="POST">
           <fieldset>
             <legend>URL Shortener</legend>
             <label for="url_input">URL:</label>
-            <input
-              id="url_input"
-              type="text"
-              name="url"
-              placeholder="https://www.freecodecamp.org/"
-            />
-            <button type="submit">POST URL</button>
+            <input id="url_input" type="text" name="url" placeholder="https://www.freecodecamp.org/" />
+            <input type="submit" value="POST URL" />
           </fieldset>
         </form>
-
-        <div id="result"></div>
       </section>
     </main>
     <footer>
       <p>By <a href="https://www.freecodecamp.org/">freeCodeCamp</a></p>
     </footer>
-
-    <script>
-      document
-        .getElementById("urlForm")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
-
-          const urlInput = document.getElementById("url_input").value;
-          const resultContainer = document.getElementById("result");
-
-          try {
-            const response = await fetch("/api/shorturl", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ url: urlInput }),
-            });
-
-            const data = await response.json();
-
-            console.log("Server Response:", data); // Log the response
-
-            // Display the result
-            if (response.ok) {
-              resultContainer.innerHTML = `<p>Short URL: <a href="${data.short_url}" target="_blank">${data.short_url}</a></p>`;
-            } else {
-              resultContainer.innerHTML = `<p>Error: ${data.error}</p>`;
-            }
-          } catch (error) {
-            console.error("Fetch Error:", error); // Log fetch errors
-            resultContainer.innerHTML = "<p>Something went wrong.</p>";
-          }
-        });
-    </script>
   </body>
 </html>
