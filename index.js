@@ -14,7 +14,7 @@ const urlMappings = {}; // In-memory storage for short and long URL mappings
 app.use("/public", express.static(`${process.cwd()}/public`));
 
 app.get("/", function (req, res) {
-  res.sendFile(process.cwd() + "/views/index.html");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 app.post("/api/shorturl", function (req, res) {
